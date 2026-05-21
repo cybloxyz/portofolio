@@ -1,6 +1,3 @@
-/* lib/magnetic-cursor.css */
-
-/* Gaya Tombol Bawaan Kamu */
 button {
     padding: 4px 10px;
     background-color: #d7603e;
@@ -15,9 +12,6 @@ button:hover {
     background-color: #c85636;
 }
 
-/* ==========================================
-   STYLE CUSTOM CURSOR (MAGNETIC CORNERS)
-   ========================================== */
 .target-cursor-wrapper {
     position: fixed;
     top: 0;
@@ -34,7 +28,7 @@ button:hover {
     top: 50%;
     width: 6px;
     height: 6px;
-    background: #e89161; /* Warna oranye estetikmu */
+    background: #e89161; 
     border-radius: 50%;
     transform: translate(-50%, -50%);
     will-change: transform;
@@ -51,7 +45,6 @@ button:hover {
     box-sizing: border-box;
 }
 
-/* Posisi Awal Sudut-Sudut Kursor */
 .corner-tl {
     transform: translate(-125%, -125%);
     border-right: none;
@@ -76,7 +69,6 @@ button:hover {
     border-top: none;
 }
 
-/* Sembunyikan custom cursor di HP/Tablet agar tidak nge-bug */
 @media only screen and (max-width: 600px) {
     .target-cursor-wrapper {
         display: none !important;
