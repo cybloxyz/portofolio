@@ -1,15 +1,9 @@
-// =========================================================================
-// 1. Inisialisasi Kursor Magnetik
-// =========================================================================
 new MagneticCursor({
     targetSelector: '.cursor-target',
     spinDuration: 3,
     hideDefaultCursor: true
 });
 
-// =========================================================================
-// 2. Database Konten Proyek (Mendukung .gltf 3D & Screenshot Software)
-// =========================================================================
 const projectDatabase = {
     majigotcha: {
         title: "Majigotcha Development",
@@ -40,22 +34,19 @@ const projectDatabase = {
         type: "software",
         description: "A business startup concept combining custom NFC acrylic keychains with deep-linking digital profile pages. Optimized for custom aesthetics and instant profile sharing built on full-stack web architecture.",
         model3d: null,
-        previewImg: "./assets/images/clowncard-preview.png",
-        liveUrl: "https://clowncard.id"
+        previewImg: "./assets/clowncard-preview.png",
+        liveUrl: "https://clowncard.nfnaa.dev"
     },
     cooquizz: {
         title: "Cooquizz",
         type: "software",
         description: "Complete quizzes and get new recipes!",
         model3d: null,
-        previewImg: "./assets/images/clowncard-preview.png",
-        liveUrl: "https://github.com/cybloxyz/cooquizz"
+        previewImg: "./assets/clowncard-preview.png",
+        liveUrl: "https://cooquizz.nfnaa.dev"
     }
 };
 
-// =========================================================================
-// 3. Engine Animasi Scramble Text (Konversi dari Svelte 5)
-// =========================================================================
 const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*';
 
 class TextScrambler {
@@ -72,7 +63,6 @@ class TextScrambler {
     }
 
     init() {
-        // Cek apakah elemen ini merupakan paragraf perkenalan panjang
         this.disableHover = this.el.classList.contains('js-scramble-p');
         
         this.el.innerHTML = '';
@@ -183,11 +173,7 @@ class TextScrambler {
     }
 }
 
-// =========================================================================
-// 4. Routing Handler Modal Popup + IntersectionObserver Control
-// =========================================================================
 document.addEventListener("DOMContentLoaded", () => {
-    // FIX: Variabel allBigTitles sekarang diambil dari dokumen DOM agar tidak menyebabkan crash!
     const allBigTitles = document.querySelectorAll('.bigtitle');
     const homeSubtitle = document.querySelector('.subtitle-greek');
     const aboutParagraphs = document.querySelectorAll('.js-scramble-p');
@@ -195,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const scramblerMap = new Map();
 
-    // Jalankan mesin pengacak untuk semua .bigtitle
     allBigTitles.forEach((title) => {
         const scrambler = new TextScrambler(title, { iterations: 7, speed: 10, rippleRadius: 1 });
         scramblerMap.set(title, scrambler);
@@ -206,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
         scramblerMap.set(homeSubtitle, scrambler);
     }
 
-    // Jalankan mesin pengacak untuk teks perkenalan panjang (Otomatis mematikan efek hover)
     aboutParagraphs.forEach((p) => {
         const scrambler = new TextScrambler(p, { iterations: 5, speed: 8, rippleRadius: 0 });
         scramblerMap.set(p, scrambler);
@@ -217,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
         scramblerMap.set(footerLogo, scrambler);
     }
 
-    // Mengatur trigger pemicu masuk layar (scroll view trigger)
     const viewObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -241,7 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
     aboutParagraphs.forEach(el => viewObserver.observe(el));
     if (footerLogo) viewObserver.observe(footerLogo);
 
-    // Efek Spotlight Masking Coklat pada Teks Footer
     if (footerLogo) {
         footerLogo.addEventListener('mousemove', (e) => {
             const rect = footerLogo.getBoundingClientRect();
@@ -252,7 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Logika Manajemen Tampilan Box Modal
     const modal = document.getElementById("project-modal");
     const modalBody = document.getElementById("modal-body-content");
     const closeBtn = document.querySelector(".close-modal");
